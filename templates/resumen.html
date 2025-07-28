@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen Estadístico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    {% include 'header.html' %}
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Resumen Estadístico de las Viviendas</h2>
+        <ul class="list-group mb-4">
+            <li class="list-group-item">Total de viviendas: <strong>{{ total }}</strong></li>
+            <li class="list-group-item">Promedio del precio por m²: <strong>${{ promedio_m2 }}</strong></li>
+        </ul>
+
+        <h4>Clasificación por tipo de vivienda:</h4>
+        <ul class="list-group">
+            {% for tipo, cantidad in conteo.items() %}
+                <li class="list-group-item">{{ tipo }}: <strong>{{ cantidad }}</strong> viviendas</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

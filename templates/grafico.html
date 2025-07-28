@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Gráfico de Dispersión</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    {% include 'header.html' %}
+
+    <div class="container mt-5">
+        <h2 class="text-center">Gráfico de Dispersión</h2>
+        {% if error %}
+            <div class="alert alert-warning">{{ error }}</div>
+        {% else %}
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename='dispersion.png') }}" 
+                         class="img-fluid" 
+                         alt="Gráfico de dispersión">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+
+</html></body>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+</body>
+</html>
