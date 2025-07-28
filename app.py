@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask import request
 import pandas as pd
 from Controllers.predictor_controller import PredictorController
 from Controllers.visualizer import Visualizer
@@ -86,6 +87,25 @@ def mostrar_modelo():
     """Ruta para entrenar regresión lineal y mostrar métricas."""
     resultados = controlador.entrenar_regresion()
     return render_template('modelo.html', **resultados)
+
+@app.route('/predecir', methods=['GET', 'POST'])
+def predecir_precio():
+    """Formulario para predecir el precio según el área y habitaciones diligenciadas por el usuario"""
+    prediccion = None
+    error = None
+
+    if request.method == 'POST':
+        try:
+            area = float(request.form['area'])
+            habitaciones = int(request.form['habitaciones'])
+            
+            resultados = controlador.entrenar_regresion()
+            prediccion = controlador.model_trainer.predecir(area, habitaciones)
+
+        except Exception as e:
+            error = f"Error en la predicción: {e}"
+
+    return render_template('predecir.html', prediccion=prediccion, error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)

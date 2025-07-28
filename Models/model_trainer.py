@@ -15,7 +15,7 @@ class ModelTrainer:
 
     def entrenar_modelo(self):
         try:
-            X = self.datos[['area', 'antiguedad']]
+            X = self.datos[['area', 'habitaciones']]
             y = self.datos['precio']
 
             self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
@@ -42,9 +42,9 @@ class ModelTrainer:
             print(f"Error al entrenar el modelo: {e}")
             return None
         
-    def predecir(self, area, antiguedad):
+    def predecir(self, area, habitaciones):
         try:
-            entrada = pd.DataFrame([[area, antiguedad]], columns=['area', 'antiguedad'])
+            entrada = pd.DataFrame([[area, habitaciones]], columns=['area', 'habitaciones'])
             prediccion = self.modelo.predict(entrada)[0]
             return prediccion
         except Exception as e:
